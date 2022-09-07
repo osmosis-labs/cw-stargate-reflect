@@ -1,9 +1,11 @@
 const { CwStargateReflectContract } = require("../dist/index");
 const localState = require("../../../.beaker/state.local.json");
-const { cosmos } = require("osmojs");
+const { cosmos, osmosis } = require("osmojs");
 const { CosmWasmClient } = require("cosmwasm");
 
 const { QueryParamsRequest } = cosmos.auth.v1beta1;
+const tokenfactory = osmosis.tokenfactory.v1beta1;
+const { QueryLockableDurationsRequest } = osmosis.incentives;
 
 const contractAddress =
   localState.local["cw-stargate-reflect"].addresses.default;
@@ -49,5 +51,18 @@ test("/cosmos.auth.v1beta1.Query/Params", async () => {
       sig_verify_cost_ed25519: "590",
       sig_verify_cost_secp256k1: "1000",
     },
+  });
+});
+
+// failed on multiple execution
+// `lockable_durations` keeps accumulating
+test("/osmosis.incentives.Query/LockableDurations", async () => {
+  const res = await queryStargate({
+    path: "/osmosis.incentives.Query/LockableDurations",
+    request: {},
+    encoder: QueryLockableDurationsRequest,
+  });
+  expect(res).toEqual({
+    lockable_durations: ["1s", "120s", "180s", "240s"],
   });
 });
