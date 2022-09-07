@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QueryStargateResponse",
+  "type": "object",
+  "required": [
+    "value"
+  ],
+  "properties": {
+    "value": {
+      "description": "query response data in bytes, json-serialized, base64 encoded",
+      "type": "string"
+    }
+  }
+}

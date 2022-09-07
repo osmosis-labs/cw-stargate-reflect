@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QueryMsg",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "query_stargate"
+      ],
+      "properties": {
+        "query_stargate": {
+          "type": "object",
+          "required": [
+            "path",
+            "query_request"
+          ],
+          "properties": {
+            "path": {
+              "description": "proto path for invoking query method",
+              "type": "string"
+            },
+            "query_request": {
+              "description": "`query_request` is expected to be base64 encoded due to potential utf-8 encoding issues",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

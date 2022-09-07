@@ -1,0 +1,7 @@
+name = "cw-stargate-reflect"
+
+[networks.local]
+chain_id = 'localosmosis'
+network_variant = 'Local'
+grpc_endpoint = 'http://localhost:9090'
+rpc_endpoint = 'http://localhost:26657'

@@ -1,0 +1,11 @@
+{
+  "testnet": {
+    "cw-stargate-reflect": {
+      "code_id": 1204,
+      "addresses": {},
+      "proposal": {
+        "store_code": null
+      }
+    }
+  }
+}
